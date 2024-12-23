@@ -1,64 +1,51 @@
+# Coffee Delivery Prediction
 
+A machine learning application to predict coffee delivery delays.
 
-# Run Frontend and Backend
+## Quick Start with Docker
 
-## Start frontend
-inside folder frontend
-
-```sh
-yarn install
-yarn dev --host
+1. Navigate to project root:
+```bash
+cd coffee-gbr
 ```
 
-## Start backend
-inside folder backend
+2. Build Docker image:
+```bash
+docker build -t coffee:latest .
+```
 
-```sh
+3. Run container:
+```bash
+docker run -d -p 7071:7071 -p 5173:5173 coffee:latest
+```
+
+4. Access the application:
+   - Wait approximately 5 minutes for all services to start
+   - Open [http://localhost:5173](http://localhost:5173) in your browser
+
+## Manual Setup
+
+If you prefer running without Docker:
+
+1. Setup Backend:
+```bash
+cd backend
+# Copy settings template
+cp local.settings.template.json local.settings.json
+# Update settings with your Azure credentials
+# Start backend
 func start
 ```
 
-
-# Publish Frontend and Backend to Azure
-
-## Frontend
-
-Inside folder frontend
-
-Build Frontend
-```sh
-yarn build
+2. Setup Frontend:
+```bash
+cd frontend
+# Install dependencies
+yarn install
+# Start development server
+yarn dev --host
 ```
 
-Upload to azure
-```sh
-az storage blob upload-batch \    
-    --destination '$web' \
-    --source dist \
-    --overwrite \
-    --connection-string '{connectionString}'
-
-```
-
-## Backend
-
-Login into azure
-
-```sh
-az login
-```
-
-Publish backend from with backend folder
-
-```sh
-func azure functionapp publish {functionAppName} \
-  --python \
-  --build remote
-
-```
-
-## Setup
-
-1. Copy `backend/local.settings.template.json` to `backend/local.settings.json`
-2. Replace `<YOUR_STORAGE_ACCOUNT_CONNECTION_STRING>` with your actual Azure Storage connection string
+The application will be available at [http://localhost:5173](http://localhost:5173)
 
 
