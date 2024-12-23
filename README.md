@@ -2,11 +2,15 @@
 
 A machine learning application to predict coffee delivery delays.
 
+## How to run
+## Copy settings template
+- copy local.settings.template.json to local.settings.json
+- Update local.settings.json with your Azure credentials
 ## Quick Start with Docker
 
 1. Navigate to project root:
 ```bash
-cd coffee-gbr
+cd coffee-prediction
 ```
 
 2. Build Docker image:
@@ -20,7 +24,7 @@ docker run -d -p 7071:7071 -p 5173:5173 coffee:latest
 ```
 
 4. Access the application:
-   - Wait approximately 5 minutes for all services to start
+   - Wait approximately 5 minutes for all services to start, check docker log if you want
    - Open [http://localhost:5173](http://localhost:5173) in your browser
 
 ## Manual Setup
@@ -30,9 +34,7 @@ If you prefer running without Docker:
 1. Setup Backend:
 ```bash
 cd backend
-# Copy settings template
-cp local.settings.template.json local.settings.json
-# Update settings with your Azure credentials
+
 # Start backend
 func start
 ```
